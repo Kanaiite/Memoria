@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title> Jodo da memoria </title>
+		<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	</head>
+	<body>
+		<h2>Jodo da memoria</h2>
+		
+			
+		</div>
+
+		<table>
+			<tr>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+			</tr>
+
+			<tr>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+			</tr>
+
+			<tr>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+				<td><div id="" class="like_button_container">
+			
+				</div></td>
+			</tr>
+		</table>
+
+
+		<script >
+			const e = React.createElement;
+			var vet = [1,1,2,2,3,3,4,4,5,5,6,6];
+			var pontos = 0;
+			var aux = 0;
+			var x1 = 0;
+			var x2 = 0;
+			cont =0;
+		
+			
+			class LikeButton extends React.Component{
+				constructor(props){
+					super(props);
+					this.state = {liked: false};
+					this.state = {acertou: false};	
+				}
+				render(){
+					
+					if(!this.state.liked){
+						return e(
+							'button',
+							{onClick: () => this.setState({liked: true})}, 'X'
+						);
+					}
+					return e(
+						'button',
+						{onClick: () => this.setState({liked: false})}, this.props.cod,controla(this.props.cod)
+					);
+				}
+			}
+
+			var x = document.querySelectorAll('.like_button_container');
+			mistura();
+
+			x.forEach(imprime);
+
+			function mistura(){
+				
+				var aux = 0;
+				var i = 0;
+				while (i < 12){
+					var p = Math.floor(Math.random() * 11 ) + 0;
+					
+					aux = vet[i];
+					vet[i] = vet[p];
+					vet[p] = aux;
+					i = i +1;
+				}
+			}
+
+			function viraCarta(index){
+				if(!this.state.acertou){//criar a carta 2 dentro de uma função q retorna true ou false
+					this.setState({liked:true});
+				}
+			}
+
+			function controla(id,index){
+				aux+=1;
+
+				if(aux==1){
+					x1 = id;
+				}
+				else{
+					x2 = id;
+					if(x1==x2){
+						pontos+=1;
+						console.log("acertou");	
+					}
+					else{
+						console.log("errou");
+					}
+					aux=0;
+				}
+
+			}
+
+			function imprime(item, index){
+				item.id = vet[cont++];
+				const cod = item.id;
+
+				ReactDOM.render(e(LikeButton,{cod:cod}),item);
+			}
+
+		</script>
+			
+	</body>	
+</html>
